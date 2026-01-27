@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://s05cvd533vla"]
 
-[ext_resource type="Script" uid="uid://cxdwcu7gmwftf" path="res://src/Program.cs" id="1_xhtwi"]
+[ext_resource type="Script" uid="uid://cxdwcu7gmwftf" path="res://src/Core/Program.cs" id="1_xhtwi"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_xhtwi")
+debugMode = true
