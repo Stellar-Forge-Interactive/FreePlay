@@ -1,3 +1,4 @@
+using System.IO;
 using Godot;
 using SFIUtils.Logging;
 using Logger = SFIUtils.Logging.Logger;
@@ -24,18 +25,30 @@ public partial class Program : Node
 	public Logger Logger { get; private set; }
 	
 	// -- Fields --
+	FileManager fileManager;
+	NetworkManager networkManager;
+	AudioStreamPlayer player;
+	bool debugMode;
 	
 	// -- Exports --
 	[ExportSubgroup("Debug")] object crlf;
-	[Export] bool debugMode;
 
 	public Program()
 	{
 		if (!SetSingleton()) return;
+
+
+		if (File.Exists(".editorconfig")){debugMode = true;}
 		
 		// Mode Independent Initialization
 		Logger = new Logger();
 		
+		fileManager = new FileManager();
+		networkManager = new NetworkManager();
+		player = new AudioStreamPlayer();
+		
+		AddChild(player);
+
 		if (debugMode) InitDebug();
 		else InitRelease();
 		
@@ -66,6 +79,14 @@ public partial class Program : Node
 		Logger.MinimumFileLogLevel = LogLevel.Debug;
 		Logger.SendToConsole = true;
 		Logger.UseDateStamps = false;
+
+		Ready += DebugPostInit;
+
+		void DebugPostInit()
+		{
+			player.Stream = fileManager.DebugSongInfo().clip;
+			player.Play();
+		}
 	}
 
 	void InitRelease()
