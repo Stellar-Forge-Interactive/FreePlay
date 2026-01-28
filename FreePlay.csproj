@@ -9,4 +9,7 @@
       <HintPath>..\SFI-Utils\SFIUtils\bin\Release\net8.0\SFIUtils.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DiscordRichPresence" Version="1.6.1.70" />
+  </ItemGroup>
 </Project>

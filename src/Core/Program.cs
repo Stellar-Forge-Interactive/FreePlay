@@ -1,4 +1,5 @@
 using System.IO;
+using FreePlay.Extras;
 using Godot;
 using SFIUtils.Logging;
 using Logger = SFIUtils.Logging.Logger;
@@ -28,6 +29,7 @@ public partial class Program : Node
 	FileManager fileManager;
 	NetworkManager networkManager;
 	AudioStreamPlayer player;
+	DiscordRPManager discordRPManager;
 	bool debugMode;
 	
 	// -- Exports --
@@ -46,6 +48,7 @@ public partial class Program : Node
 		fileManager = new FileManager();
 		networkManager = new NetworkManager();
 		player = new AudioStreamPlayer();
+		discordRPManager = new DiscordRPManager();
 		
 		AddChild(player);
 
